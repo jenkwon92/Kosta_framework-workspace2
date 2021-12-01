@@ -16,7 +16,7 @@
 		//readyState 상태값이 변경될때 실행될 함수(callback 함수)를 등록 
 		xhr.onreadystatechange=function(){
 			if(xhr.readyState==4&&xhr.status==200){
-				
+				document.getElementById("deleteResult").innerHTML=xhr.responseText;
 			}
 		};//callback 함수를 등록 		
 		xhr.open("post", "AjaxPostServlet");
