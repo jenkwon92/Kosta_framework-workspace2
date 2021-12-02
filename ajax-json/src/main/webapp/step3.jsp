@@ -21,14 +21,26 @@ th, td {
 <script type="text/javascript">
 	function startAjax() {
 		let makerComp = document.getElementById("maker");
-		if(makerComp.value==""){
-			document.getElementById("carView").innerHTML ="";
+		if (makerComp.value == "") {
+			document.getElementById("carView").innerHTML = "";
 			return;
 		}
 		let xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4 && xhr.status == 200) {
-				
+				//[{"price:200" ,"model" :"k5",}{"price":600,"model","k7"}]
+				//alert(xhr.responseText);
+				let ja = JSON.parse(xhr.responseText);
+				//alert(ja[0].model);
+				let tb = "";
+				for (let i = 0; i < ja.length; i++) {
+					tb+="<tr>";
+					tb+="<td>"+(i+1)+"</td>";
+					tb+="<td>"+ja[i].model+"</td>";
+					tb+="<td>"+ja[i].price+"</td>";
+					tb+="</tr>";
+				}
+				document.getElementById("carView").innerHTML;
 			}
 		}//callback
 		xhr.open("get", "CarJSONServlet?maker=" + makerComp.value);
